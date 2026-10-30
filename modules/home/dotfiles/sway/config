@@ -41,7 +41,7 @@ bindsym $mod+b exec --no-startup-id "brave"
 bindsym $mod+backslash exec --no-startup-id "xfce4-screensaver-command --lock"
 
 # Screenshot
-bindsym $mod+Shift+s exec "flameshot gui"
+bindsym $mod+Shift+s exec "noctalia msg screenshot-region"
 
 # kill focused window
 bindsym $mod+Shift+q kill

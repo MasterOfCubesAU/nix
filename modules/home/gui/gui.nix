@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   flake.modules.homeManager.gui =
     {
@@ -5,6 +6,7 @@
       ...
     }:
     {
+      imports = with self.modules.homeManager; [ sway ];
       home.packages = with pkgs; [
         vesktop
         spotify

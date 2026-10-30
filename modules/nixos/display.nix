@@ -1,7 +1,9 @@
 {
   flake.modules.nixos.display = {
-    services.displayManager.gdm.enable = true;
-    services.desktopManager.gnome.enable = true;
+    programs.sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+      extraOptions = [ "--unsupported-gpu" ];
+    };
   };
-
 }

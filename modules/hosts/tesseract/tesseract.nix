@@ -24,7 +24,7 @@
         programming
         terminal
         tooling
-        tesseract-kanshi
+        tesseract-configs
       ];
       home.stateVersion = "26.05";
     };
@@ -64,7 +64,8 @@
       };
     };
 
-  flake.modules.homeManager.tesseract-kanshi = {
+  flake.modules.homeManager.tesseract-configs = {
     home.file.".config/kanshi/config".source = ./kanshi.config;
+    home.file.".config/sway/config.d/tesseract".source = ./sway.config;
   };
 }

@@ -11,6 +11,9 @@
         };
       in
       "${alternatingLayoutsDeriv}/bin/alternating-layouts";
-    home.packages = with pkgs; [ xcwd wl-clipboard ];
+    home.packages = with pkgs; [
+      xcwd
+      wl-clipboard
+    ];
   };
 }

@@ -4,6 +4,7 @@ set $mod Mod1
 font pango:monospace 8
 
 exec noctalia
+exec_always kanshi
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- swaylock --nofork
 

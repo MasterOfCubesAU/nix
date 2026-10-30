@@ -23,5 +23,7 @@
         name = "Bibata-Modern-Ice";
       };
     };
+
+    services.kanshi.enable = true;
   };
 }

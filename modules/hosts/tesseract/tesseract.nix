@@ -24,6 +24,7 @@
         programming
         terminal
         tooling
+        tesseract-kanshi
       ];
       home.stateVersion = "26.05";
     };
@@ -62,4 +63,8 @@
         package = config.boot.kernelPackages.nvidiaPackages.stable;
       };
     };
+
+  flake.modules.homeManager.tesseract-kanshi = {
+    home.file.".config/kanshi/config".source = ./kanshi.config;
+  };
 }

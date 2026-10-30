@@ -6,7 +6,9 @@
       ...
     }:
     {
-      imports = with self.modules.homeManager; [ sway ];
+      imports = with self.modules.homeManager; [
+        sway
+      ];
       home.packages = with pkgs; [
         vesktop
         spotify

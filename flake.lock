@@ -283,6 +283,26 @@
         "type": "github"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1793320920,
+        "narHash": "sha256-n26CYSnw00a/KMPw1t0kEG+2bhAYO3KaUElKRcN8OCY=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "rev": "d42e0c7705ba56d1678e16ef105ca42050968218",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -290,7 +310,8 @@
         "import-tree": "import-tree",
         "mac-app-util": "mac-app-util",
         "nix-darwin": "nix-darwin",
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_5",
+        "noctalia": "noctalia"
       }
     },
     "systems": {

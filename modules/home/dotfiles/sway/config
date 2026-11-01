@@ -40,7 +40,9 @@ bindsym $mod+Shift+f exec "thunar"
 bindsym $mod+b exec "brave"
 
 # Screenshot
-bindsym $mod+Shift+s exec "flameshot gui --raw | wl-copy --type image/png"
+bindsym Print exec "flameshot screen --clipboard"
+bindsym $mod+Print exec "flameshot full --clipboard"
+bindsym $mod+Shift+s exec "flameshot gui --clipboard"
 
 # kill focused window
 bindsym $mod+Shift+q kill

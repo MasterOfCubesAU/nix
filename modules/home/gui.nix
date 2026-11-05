@@ -12,6 +12,7 @@
         flameshot
         bruno
         vscode
+        bitwarden-desktop
       ];
     };
 }

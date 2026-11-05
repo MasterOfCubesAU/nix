@@ -24,7 +24,13 @@
       };
     };
 
-    services.kanshi.enable = true;
+    systemd.user.services.kanshi = {
+      description = "kanshi daemon";
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.kanshi}/bin/kanshi -c .config/kanshi/config";
+      };
+    };
     xdg.portal = {
       enable = true;
       wlr.enable = true;

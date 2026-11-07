@@ -1,0 +1,7 @@
+require("plugins.treesitter")
+require("plugins.telescope")
+require("plugins.yazi")
+require("plugins.bufferline")
+require("plugins.lualine")
+require("plugins.neocord")
+require("plugins.themes")

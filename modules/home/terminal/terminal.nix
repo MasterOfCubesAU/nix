@@ -4,7 +4,7 @@
     imports = with self.modules.homeManager; [
       alacritty
       fzf
-      # nvim TODO: Fix nvim
+      nvim
       zsh
     ];
   };

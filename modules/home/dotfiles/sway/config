@@ -6,7 +6,6 @@ font pango:monospace 8
 
 # === STARTUP === 
 exec noctalia
-exec_always "sleep 5; systemctl --user restart kanshi.service"
 exec ~/.config/sway/alternating-layouts.py
 
 # === BINDINGS === 

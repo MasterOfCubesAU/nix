@@ -20,5 +20,6 @@
         bitwarden-desktop
       ];
       services.easyeffects.enable = true;
+      services.kanshi.enable = true;
     };
 }

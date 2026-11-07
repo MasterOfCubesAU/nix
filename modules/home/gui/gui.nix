@@ -18,5 +18,6 @@
         vscode
         bitwarden-desktop
       ];
+      services.easyeffects.enable = true;
     };
 }

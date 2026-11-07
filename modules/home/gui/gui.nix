@@ -8,11 +8,11 @@
     {
       imports = with self.modules.homeManager; [
         sway
+        brave
       ];
       home.packages = with pkgs; [
         vesktop
         spotify
-        brave
         flameshot
         bruno
         vscode

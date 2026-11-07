@@ -62,6 +62,13 @@
         nvidiaSettings = true;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
       };
+      services.displayManager.noctalia-greeter = {
+        settings = {
+          output = {
+            name = "Acer Technologies XV345CUR V3 2439024892X00";
+          };
+        };
+      };
     };
 
   flake.modules.homeManager.tesseract-configs = {

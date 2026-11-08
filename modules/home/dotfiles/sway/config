@@ -39,9 +39,10 @@ bindsym $mod+Shift+f exec "thunar"
 bindsym $mod+b exec "brave"
 
 # Screenshot
+bindsym Ctrl+$mod+Print exec "flameshot full --clipboard"
 bindsym Print exec "flameshot screen --clipboard"
-bindsym $mod+Print exec "flameshot full --clipboard"
-bindsym $mod+Shift+s exec "flameshot gui --clipboard"
+bindsym $mod+print exec sh -c "flameshot screen -e -n $(swaymsg -t get_outputs | jq '[.[] | select(.active)] | map(.focused) | index(true)') --clipboard --region $(swaymsg -t get_tree | jq -r '.nodes[] as $out | $out | .. | select(.focused? == true) | "\(.rect.width)x\(.rect.height)+\(.rect.x - $out.rect.x)+\(.rect.y - $out.rect.y)"')"
+bindsym $mod+Shift+s exec "flameshot screen -e -n $(swaymsg -t get_outputs | jq '[.[] | select(.active)] | map(.focused) | index(true)') --clipboard"
 
 # kill focused window
 bindsym $mod+Shift+q kill

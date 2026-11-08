@@ -15,6 +15,7 @@ set $ipc noctalia msg
 bindsym $mod+space exec $ipc panel-toggle launcher
 bindsym $mod+s exec $ipc panel-toggle control-center
 bindsym $mod+comma exec $ipc settings-toggle
+bindsym $mod+backslash exec --no-startup-id "noctalia msg session lock"
 
 # Media keys
 bindsym --locked XF86AudioRaiseVolume exec $ipc volume-up

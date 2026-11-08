@@ -32,12 +32,12 @@ order = [ "Primary" ]
     capsule_opacity = 1.0
     capsule_padding = 6.0
     capsule_thickness = 0.75999999046325684
-    center = [ "clock" ]
+    center = [ "group:g2" ]
     compositor_blur = true
     concave_edge_corners = true
     contact_shadow = false
     enabled = true
-    end = [ "tray", "volume", "network", "group:g1" ]
+    end = [ "tray", "input_volume", "privacy", "group:g1" ]
     font_scale = 1.0
     font_weight = 500
     hover_highlight = true
@@ -61,7 +61,7 @@ order = [ "Primary" ]
     smart_auto_hide = false
     start = [ "workspaces", "media" ]
     thickness = 34
-    widget_spacing = 3
+    widget_spacing = 10
 
         [bar.Primary.dead_zone]
         click_through = false
@@ -187,7 +187,18 @@ order = [ "Primary" ]
         enabled = true
         fill = "surface_container"
         id = "g1"
-        members = [ "date", "session" ]
+        members = [ "network", "session" ]
+        opacity = 1.0
+        padding = 6.0
+
+        [[bar.Primary.capsule_group]]
+        accordion = false
+        accordion_direction = "end"
+        border_width = 1.0
+        enabled = true
+        fill = "surface"
+        id = "g2"
+        members = [ "date", "clock" ]
         opacity = 1.0
         padding = 6.0
 
@@ -931,7 +942,7 @@ title_scroll = "none"
 type = "active_window"
 
 [widget.clock]
-anchor = true
+anchor = false
 type = "clock"
 
 [widget.cpu]
@@ -943,7 +954,13 @@ format = "{:%a %d %b}"
 type = "clock"
 
 [widget.input_volume]
+capsule = true
+capsule_fill = "primary"
+color = "on_surface"
 device = "input"
+enabled = false
+mute_color = "on_surface"
+show_label = false
 type = "volume"
 
 [widget.keyboard_layout]
@@ -965,6 +982,10 @@ min_length = 80.0
 title_scroll = "none"
 type = "media"
 
+[widget.network]
+show_label = false
+type = "network"
+
 [widget.network_rx]
 stat = "net_rx"
 type = "sysmon"
@@ -976,6 +997,10 @@ type = "sysmon"
 [widget.output_volume]
 device = "output"
 type = "volume"
+
+[widget.privacy]
+hide_inactive = true
+type = "privacy"
 
 [widget.ram]
 stat = "ram_used"
@@ -990,5 +1015,10 @@ stat = "cpu_temp"
 type = "sysmon"
 
 [widget.tray]
+detached_panel = true
 drawer = true
 type = "tray"
+
+[widget.volume]
+enabled = false
+type = "volume"

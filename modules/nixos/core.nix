@@ -41,6 +41,7 @@
     };
     services.xserver.xkb = {
       layout = "au";
+      options = "caps:escape";
       variant = "";
     };
     services.printing.enable = true;

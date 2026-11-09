@@ -3,7 +3,7 @@
 set -e
 cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null
 
-git add -A
+git add --update
 case "$(uname -s)" in
   "Linux")
     nixos-rebuild switch --sudo --flake ../ --show-trace

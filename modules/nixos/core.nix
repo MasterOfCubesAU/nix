@@ -39,10 +39,12 @@
       LC_TELEPHONE = "en_AU.UTF-8";
       LC_TIME = "en_AU.UTF-8";
     };
-    services.xserver.xkb = {
-      layout = "au";
-      options = "caps:escape";
-      variant = "";
+    services.keyd = {
+      enable = true;
+      keyboards.default = {
+        ids = [ "*" ];
+        settings.main.capslock = "esc";
+      };
     };
     services.printing.enable = true;
     services.tailscale.enable = true;

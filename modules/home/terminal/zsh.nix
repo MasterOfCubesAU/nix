@@ -9,6 +9,8 @@
       shellAliases = {
         k = "kubectl";
         kn = "kubens";
+        ns = "nix search nixpkgs";
+        nsh = "nix-shell -p";
       };
       oh-my-zsh = {
         enable = true;

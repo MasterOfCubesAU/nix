@@ -20,6 +20,9 @@
       url = "github:hraban/mac-app-util";
     };
 
+    # NixOS WSL
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+
     # Noctalia
     noctalia = {
       url = "github:noctalia-dev/noctalia";

@@ -1,7 +1,10 @@
 { self, ... }:
 {
   flake.modules.generic.core = { pkgs, ... }: {
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config = {
+      microsoftVisualStudioLicenseAccepted = true;
+      allowUnfree = true;
+    };
     home-manager.useGlobalPkgs = true;
     nix.settings.experimental-features = [
       "nix-command"

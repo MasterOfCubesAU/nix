@@ -18,6 +18,7 @@
         bruno
         vscode
         bitwarden-desktop
+        crosspipe
       ];
       services.easyeffects.enable = true;
       services.kanshi.enable = true;

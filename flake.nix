@@ -25,6 +25,14 @@
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Rocksmith
+    nixos-rocksmith.url = "github:re1n0/nixos-rocksmith/release";
+    # Steam Config
+    steam-config-nix = {
+      url = "github:different-name/steam-config-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

@@ -5,6 +5,7 @@
     modules = with self.modules.nixos; [
       ./_hardware-configuration.nix
       inputs.home-manager.nixosModules.home-manager
+      inputs.nixos-rocksmith.nixosModules.default
       tesseract-users
       tesseract-bootloader
       tesseract-networking
@@ -12,7 +13,11 @@
       core
       {
         system.stateVersion = "26.05";
-        programs.steam.enable = true;
+        home-manager.sharedModules = [ inputs.steam-config-nix.homeModules.default ];
+        programs.steam = {
+          enable = true;
+          rocksmithPatch.enable = true;
+        };
       }
     ];
   };
@@ -34,6 +39,8 @@
       extraGroups = [
         "networkmanager"
         "wheel"
+        "audio"
+        "rkit"
       ];
     };
   };

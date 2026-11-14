@@ -99,6 +99,7 @@
   flake.modules.homeManager.tesseract-configs = {
     home.file.".config/kanshi/config".source = ./kanshi.config;
     home.file.".config/sway/config.d/tesseract".source = ./sway.config;
+    home.file.".config/yazi/keymap.toml".source = ./yazi-keymap.toml;
   };
 
   flake.modules.nixos.tesseract-sops = { config, ... }: {

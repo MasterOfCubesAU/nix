@@ -1,0 +1,7 @@
+keys:
+  - &tesseract age1a50uctgv9lvmh37q4zm9wkqdj50t9ydyxfg9nnv5gauu3u5fv4hqwwtdlz
+creation_rules:
+  - path_regex: secrets.yaml$
+    key_groups:
+    - age:
+      - *tesseract

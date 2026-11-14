@@ -33,6 +33,9 @@
       url = "github:different-name/steam-config-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Sops
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs =

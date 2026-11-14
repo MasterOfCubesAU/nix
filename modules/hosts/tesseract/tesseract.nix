@@ -6,10 +6,12 @@
       ./_hardware-configuration.nix
       inputs.home-manager.nixosModules.home-manager
       inputs.nixos-rocksmith.nixosModules.default
+      inputs.sops-nix.nixosModules.sops
       tesseract-users
       tesseract-bootloader
       tesseract-networking
       tesseract-graphics
+      tesseract-sops
       lumix-tether
       core
       {
@@ -17,9 +19,24 @@
         home-manager.sharedModules = [ inputs.steam-config-nix.homeModules.default ];
         programs.steam = {
           enable = true;
+          gamescopeSession.enable = true;
           rocksmithPatch.enable = true;
         };
       }
+      ({ config, ... }: {
+        fileSystems."/mnt/brandon" = {
+          device = "//192.168.1.178/Brandon";
+          fsType = "cifs";
+          options = [
+            "credentials=${config.sops.templates."smb/brandon".path}"
+            "uid=1000"
+            "gid=100"
+            "x-systemd.automount"
+            "noauto"
+            "_netdev"
+          ];
+        };
+      })
     ];
   };
 
@@ -56,7 +73,7 @@
   };
 
   flake.modules.nixos.tesseract-graphics =
-    { config, pkgs, ... }:
+    { config, ... }:
     {
       hardware.graphics = {
         enable = true;
@@ -82,5 +99,22 @@
   flake.modules.homeManager.tesseract-configs = {
     home.file.".config/kanshi/config".source = ./kanshi.config;
     home.file.".config/sway/config.d/tesseract".source = ./sway.config;
+  };
+
+  flake.modules.nixos.tesseract-sops = { config, ... }: {
+    sops = {
+      age.keyFile = "/home/brandon/.config/sops/age/keys.txt";
+      defaultSopsFile = ../../../secrets.yaml;
+      secrets = {
+        "smb/brandon" = { };
+      };
+      templates = {
+        "smb/brandon".content = ''
+          username=brandon
+          password=${config.sops.placeholder."smb/brandon"}
+        '';
+
+      };
+    };
   };
 }

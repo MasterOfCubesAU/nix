@@ -25,6 +25,13 @@
       display
     ];
 
+    virtualisation.vmVariant = {
+      virtualisation = {
+        memorySize = 4096;
+        cores = 2;
+      };
+    };
+
     networking.networkmanager.enable = true;
 
     time.timeZone = "Australia/Sydney";

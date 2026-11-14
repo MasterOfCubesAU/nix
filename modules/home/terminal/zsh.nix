@@ -5,7 +5,7 @@
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       history.size = 10000;
-      initContent = "source ${../dotfiles/zshrc/cse}";
+      initContent = "source ${../dotfiles/zshrc/cse}; source ${../dotfiles/zshrc/vim-mode}";
       shellAliases = {
         k = "kubectl";
         kn = "kubens";

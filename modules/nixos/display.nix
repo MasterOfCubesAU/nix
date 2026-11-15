@@ -1,8 +1,17 @@
-{ inputs, moduleWithSystem, ... }:
+{
+  self,
+  inputs,
+  moduleWithSystem,
+  ...
+}:
 {
   flake.modules.nixos.display = moduleWithSystem (
     { self', ... }: { pkgs, ... }: {
-      imports = [ inputs.noctalia.nixosModules.default ];
+      imports = [
+        inputs.noctalia.nixosModules.default
+        inputs.home-manager.nixosModules.home-manager
+      ];
+      home-manager.sharedModules = with self.modules.homeManager; [ display ];
       programs.sway = {
         enable = true;
         wrapperFeatures.gtk = true;
@@ -44,4 +53,8 @@
       };
     }
   );
+
+  flake.modules.homeManager.display = {
+    services.kanshi.enable = true;
+  };
 }

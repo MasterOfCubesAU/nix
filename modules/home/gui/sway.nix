@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.sway = { pkgs, ... }: {
+  flake.modules.homeManager.sway = { pkgs, lib, ... }: {
     home.file.".config/sway/config".source = ../dotfiles/sway/config;
     home.file.".config/sway/alternating-layouts.py".source =
       let
@@ -11,9 +11,12 @@
         };
       in
       "${alternatingLayoutsDeriv}/bin/alternating-layouts";
-    home.packages = with pkgs; [
-      xcwd
-      wl-clipboard
-    ];
+    home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux (
+      with pkgs;
+      [
+        xcwd
+        wl-clipboard
+      ]
+    );
   };
 }

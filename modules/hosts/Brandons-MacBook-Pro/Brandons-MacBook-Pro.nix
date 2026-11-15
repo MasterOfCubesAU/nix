@@ -9,29 +9,36 @@ in
     modules = with self.modules.darwin; [
       inputs.mac-app-util.darwinModules.default
       inputs.home-manager.darwinModules.home-manager
-      Brandons-MacBook-Pro-users
-      core
-      {
-        system.stateVersion = 5;
-      }
+      Brandons-MacBook-Pro-core
     ];
   };
 
-  flake.modules.darwin.Brandons-MacBook-Pro-users = {
+  flake.modules.darwin.Brandons-MacBook-Pro-core = {
+    imports = with self.modules.darwin; [ core ];
+
+    # System Version
+    system.stateVersion = 5;
+
+    # User Definition
     system.primaryUser = username;
-    home-manager.users.brandon = {
+    home-manager.users."${username}" = {
       imports = with self.modules.homeManager; [
         inputs.mac-app-util.homeManagerModules.default
-        gui
+        Brandons-MacBook-Pro-core
         programming
         terminal
         tooling
+        gui
       ];
-      home.stateVersion = "25.05";
     };
-    users.users.brandon = {
+    users.users."${username}" = {
       name = username;
       home = "/Users/${username}";
     };
+  };
+
+  flake.modules.homeManager.Brandons-MacBook-Pro-core = {
+    # Home State Version
+    home.stateVersion = "25.05";
   };
 }

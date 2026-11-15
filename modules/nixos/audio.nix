@@ -10,4 +10,7 @@
       pulse.enable = true;
     };
   };
+  flake.modules.homeManager.audio = {
+    services.easyeffects.enable = true;
+  };
 }

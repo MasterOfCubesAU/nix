@@ -22,13 +22,22 @@
           ];
         };
       };
-      sops.secrets.rs-input-device = { };
-      sops.templates."pipeasio-config" = {
-        content = builtins.readFile config.xdg.configFile."pipeasio/config.ini".source + ''
-          input_device=${config.sops.placeholder.rs-input-device}
-        '';
-        path = "${config.xdg.configHome}/pipeasio/config.ini";
+      sops.secrets.rs-input-device = {
       };
+
+      # TODO: This makes the audio choppy for some reason. Use Crosspipe to route input device for now
+      # sops.templates."pipeasio-config" = {
+      #   content = ''
+      #     [pipeasio]
+      #     buffer_size=256
+      #     input_device=${config.sops.placeholder.rs-input-device}
+      #     inputs=1
+      #     output_device=
+      #     sample_rate=48000
+      #   '';
+      #   path = "${config.xdg.configHome}/pipeasio/config.ini";
+      # };
+      xdg.configFile."pipeasio/config.ini".force = true;
     };
 
   flake.modules.nixos.rocksmith = {

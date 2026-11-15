@@ -11,16 +11,16 @@
         sway
         brave
       ];
-      home.packages = with pkgs; [
-        vesktop
-        spotify
-        flameshot
-        bruno
-        vscode
-        bitwarden-desktop
-        crosspipe
-      ];
-      services.easyeffects.enable = true;
-      services.kanshi.enable = true;
+      home.packages =
+        with pkgs;
+        [
+          vesktop
+          spotify
+          flameshot
+          bruno
+          vscode
+          bitwarden-desktop
+        ]
+        ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [ crosspipe ];
     };
 }

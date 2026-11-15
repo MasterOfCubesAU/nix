@@ -3,46 +3,47 @@
   # System Definition
   flake.nixosConfigurations.tesseract = inputs.nixpkgs.lib.nixosSystem {
     modules = with self.modules.nixos; [
+      # Hardware Configuration
       ./_hardware-configuration.nix
+      # Flake Input modules
       inputs.home-manager.nixosModules.home-manager
       inputs.nixos-rocksmith.nixosModules.default
-      inputs.sops-nix.nixosModules.sops
+      inputs.steam-config-nix.nixosModules.default
+
+      # User modules
+      gaming
       tesseract-users
       tesseract-bootloader
       tesseract-networking
       tesseract-graphics
-      tesseract-sops
       lumix-tether
       core
       {
         system.stateVersion = "26.05";
-        home-manager.sharedModules = [ inputs.steam-config-nix.homeModules.default ];
-        programs.steam = {
-          enable = true;
-          gamescopeSession.enable = true;
-          rocksmithPatch.enable = true;
-        };
       }
-      ({ config, ... }: {
-        fileSystems."/mnt/brandon" = {
-          device = "//192.168.1.178/Brandon";
-          fsType = "cifs";
-          options = [
-            "credentials=${config.sops.templates."smb/brandon".path}"
-            "uid=1000"
-            "gid=100"
-            "x-systemd.automount"
-            "noauto"
-            "_netdev"
-          ];
-        };
-      })
+      #({ config, ... }: {
+      #  fileSystems."/mnt/brandon" = {
+      #    device = "//192.168.1.178/Brandon";
+      #    fsType = "cifs";
+      #    options = [
+      #      "credentials=${config.sops.templates."smb/brandon".path}"
+      #      "uid=1000"
+      #      "gid=100"
+      #      "x-systemd.automount"
+      #      "noauto"
+      #      "_netdev"
+      #    ];
+      #  };
+      #})
     ];
   };
 
   flake.modules.nixos.tesseract-users = {
     home-manager.users.brandon = {
       imports = with self.modules.homeManager; [
+        inputs.sops-nix.homeManagerModules.sops
+        inputs.steam-config-nix.homeModules.default
+        tesseract-sops
         gui
         programming
         terminal
@@ -102,7 +103,7 @@
     home.file.".config/yazi/keymap.toml".source = ./yazi-keymap.toml;
   };
 
-  flake.modules.nixos.tesseract-sops = { config, ... }: {
+  flake.modules.homeManager.tesseract-sops = { config, ... }: {
     sops = {
       age.keyFile = "/home/brandon/.config/sops/age/keys.txt";
       defaultSopsFile = ../../../secrets.yaml;

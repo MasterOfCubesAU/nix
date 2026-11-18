@@ -9,8 +9,21 @@
     {
       programs.steam.config = {
         apps."221680" = {
-          env.WINEDLLOVERRIDES = "xinput1_3=n,b";
           env.STEAM_COMPAT_MOUNTS = "$XDG_RUNTIME_DIR/secrets.d";
+          dllOverrides = {
+            xinput1_3 = "n,b";
+          };
+          files.game.place = {
+            # CDLC
+            "D3DX9_42.dll".source = "${
+              (pkgs.fetchFromGitHub {
+                owner = "Lovrom8";
+                repo = "RSCDLCEnabler-TooManyCoresFix";
+                rev = "b88101f4e9add056a2df5640705bc8fc31ebf89f";
+                sha256 = "sha256-OQc2Ijne2XJWhug5esvF847pznQkTiL8s/gXUkByNi8=";
+              })
+            }/D3DX9_42.dll";
+          };
           wrappers = [
             (lib.getExe pkgs.gamescope)
             "-W"

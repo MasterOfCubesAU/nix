@@ -14,7 +14,7 @@
     home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux (
       with pkgs;
       [
-        xcwd
+        ycwd
         wl-clipboard
       ]
     );

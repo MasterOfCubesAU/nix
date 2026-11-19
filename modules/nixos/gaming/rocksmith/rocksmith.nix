@@ -6,6 +6,9 @@
       config,
       ...
     }:
+    let
+      rocksmithInstallDir = "${config.home.homeDirectory}/.local/share/Steam/steamapps/common/Rocksmith2014";
+    in
     {
       programs.steam.config = {
         apps."221680" = {
@@ -22,7 +25,11 @@
                 rev = "b88101f4e9add056a2df5640705bc8fc31ebf89f";
                 sha256 = "sha256-OQc2Ijne2XJWhug5esvF847pznQkTiL8s/gXUkByNi8=";
               })
-            }/D3DX9_42.dll";
+            }/RSCDLCEnabler/D3DX9_42.dll";
+            # RSMods
+            "RSMods".source = ./mods/RSMods;
+            "RSMods.ini".source = ./mods/RSMods/RSMods.ini;
+            "xinput1_3.dll".source = ./mods/RSMods/xinput1_3.dll;
           };
           wrappers = [
             (lib.getExe pkgs.gamescope)
@@ -34,6 +41,12 @@
             "180"
             "--"
           ];
+        };
+        nonSteamApps = {
+          "RSMods" = {
+            compatTool = "proton_experimental";
+            target = "${rocksmithInstallDir}/RSMods/RSMods.exe";
+          };
         };
       };
       sops.secrets.rs-input-device = {

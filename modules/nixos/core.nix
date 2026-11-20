@@ -23,7 +23,6 @@
       self.modules.generic.core
       audio
       display
-      smb
     ];
 
     virtualisation.vmVariant = {

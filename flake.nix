@@ -40,6 +40,12 @@
 
     # Sops
     sops-nix.url = "github:Mic92/sops-nix";
+
+    # Steam Deck
+    jovian = {
+      url = "github:Jovian-Experiments/Jovian-NixOS";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

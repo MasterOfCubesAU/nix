@@ -11,6 +11,9 @@
       inputs.nixos-rocksmith.nixosModules.default
       inputs.steam-config-nix.nixosModules.default
 
+      # Users
+      self.modules.nixos."users/brandon"
+
       # User modules
       tesseract-core
       lumix-tether
@@ -27,23 +30,11 @@
     # User Definition
     home-manager.users.brandon = {
       imports = with self.modules.homeManager; [
-        inputs.sops-nix.homeManagerModules.sops
-        inputs.steam-config-nix.homeModules.default
         tesseract-core
         programming
         terminal
         tooling
         gui
-      ];
-    };
-    users.users.brandon = {
-      isNormalUser = true;
-      initialPassword = "password";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "audio"
-        "rkit"
       ];
     };
 
@@ -78,7 +69,7 @@
     };
   };
 
-  flake.modules.homeManager.tesseract-core = { config, ... }: {
+  flake.modules.homeManager.tesseract-core = {
     # Home State Version
     home.stateVersion = "26.05";
 
@@ -86,20 +77,5 @@
     home.file.".config/kanshi/config".source = ./dotfiles/kanshi.config;
     home.file.".config/sway/config.d/tesseract".source = ./dotfiles/sway.config;
     home.file.".config/yazi/keymap.toml".source = ../../home/dotfiles/yazi/keymap.toml;
-
-    # Sops
-    sops = {
-      age.keyFile = "/home/brandon/.config/sops/age/keys.txt";
-      defaultSopsFile = ../../../secrets.yaml;
-      secrets = {
-        "smb/brandon" = { };
-      };
-      templates = {
-        "smb/brandon".content = ''
-          username=brandon
-          password=${config.sops.placeholder."smb/brandon"}
-        '';
-      };
-    };
   };
 }

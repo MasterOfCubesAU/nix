@@ -54,8 +54,20 @@
     services.displayManager.noctalia-greeter.enable = lib.mkForce false;
 
     # Bootloader
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+    boot = {
+      plymouth.enable = true;
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+        timeout = 0;
+      };
+      consoleLogLevel = 3;
+      kernelParams = [
+        "quiet"
+        "rd.udev.log_level=3"
+        "rd.systemd.show_status=auto"
+      ];
+    };
 
     # Deck Config
     jovian.devices.steamdeck.enable = true;

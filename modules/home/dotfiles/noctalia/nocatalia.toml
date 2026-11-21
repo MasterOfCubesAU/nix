@@ -908,6 +908,9 @@ wallpaper_scheme = "m3-content"
     enable_builtin_templates = true
     enable_community_templates = true
 
+[wallpaper.default]
+path = "color:#545454"
+
 [wallpaper]
 directory = ""
 directory_dark = ""

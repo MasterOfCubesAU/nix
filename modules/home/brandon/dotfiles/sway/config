@@ -6,7 +6,7 @@ font pango:monospace 8
 
 # === STARTUP === 
 exec noctalia
-exec ~/.config/sway/alternating-layouts.py
+exec_always autotiling
 
 # === BINDINGS === 
 set $ipc noctalia msg

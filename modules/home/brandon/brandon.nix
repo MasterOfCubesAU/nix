@@ -35,9 +35,15 @@
     programs.zsh.enable = true;
 
     # Nix Settings
-    nix.settings.trusted-users = [
-      "@wheel"
-    ];
+    nix.settings = {
+      substituters = [ "https://nixos-rocksmith.cachix.org" ];
+      trusted-public-keys = [
+        "nixos-rocksmith.cachix.org-1:gg6dJg9svbP30JVrtFwkCpGVBkHbEwYswGS2VoXJ2qo="
+      ];
+      trusted-users = [
+        "@wheel"
+      ];
+    };
 
     # SMB
     fileSystems."/mnt/brandon" = {

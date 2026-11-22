@@ -49,8 +49,7 @@
           };
         };
       };
-      sops.secrets.rs-input-device = {
-      };
+      sops.secrets.rs-input-device = { };
 
       sops.templates."pipeasio-config" = {
         content = ''

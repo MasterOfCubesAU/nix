@@ -29,26 +29,9 @@
     home-manager.users.brandon = {
       imports = with self.modules.homeManager; [
         deck-core
-        terminal
         gui
       ];
     };
-    users.users.brandon = {
-      isNormalUser = true;
-      initialPassword = "password";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-        "audio"
-        "rkit"
-      ];
-    };
-
-    # Nix settings
-    nixpkgs.config.allowUnfree = true;
-    nix.settings.trusted-users = [
-      "@wheel"
-    ];
 
     # Display
     services.displayManager.noctalia-greeter.enable = lib.mkForce false;
@@ -70,24 +53,25 @@
     };
 
     # Deck Config
-    jovian.devices.steamdeck.enable = true;
-    jovian.hardware = {
-      has.amd.gpu = true;
-      amd.gpu.enableBacklightControl = true;
-    };
-    jovian.steam = {
-      enable = true;
-      autoStart = true;
-      user = "brandon";
-      desktopSession = "sway";
-    };
-    jovian.decky-loader = {
-      enable = true;
+    jovian = {
+      devices.steamdeck.enable = true;
+      hardware = {
+        has.amd.gpu = true;
+        amd.gpu.enableBacklightControl = true;
+      };
+      steam = {
+        enable = true;
+        autoStart = true;
+        user = "brandon";
+        desktopSession = "sway";
+      };
+      decky-loader = {
+        enable = true;
+      };
     };
 
     # Networking
     networking.hostName = "deck";
-    networking.networkmanager.enable = true;
 
     # Services
     services.openssh.enable = true;

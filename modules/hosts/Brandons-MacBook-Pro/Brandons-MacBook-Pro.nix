@@ -1,14 +1,17 @@
 { self, inputs, ... }:
-let
-  username = "brandon";
-in
 {
   # System Definition
   flake.darwinConfigurations.Brandons-MacBook-Pro = inputs.nix-darwin.lib.darwinSystem {
     system = "aarch64-darwin";
     modules = with self.modules.darwin; [
+      # Flake Input Modules
       inputs.mac-app-util.darwinModules.default
       inputs.home-manager.darwinModules.home-manager
+
+      # Users
+      self.modules.darwin."users/brandon"
+
+      # User Modules
       Brandons-MacBook-Pro-core
     ];
   };
@@ -16,24 +19,10 @@ in
   flake.modules.darwin.Brandons-MacBook-Pro-core = {
     imports = with self.modules.darwin; [ core ];
 
-    # System Version
-    system.stateVersion = 5;
-
-    # User Definition
-    system.primaryUser = username;
-    home-manager.users."${username}" = {
-      imports = with self.modules.homeManager; [
-        inputs.mac-app-util.homeManagerModules.default
-        Brandons-MacBook-Pro-core
-        programming
-        terminal
-        tooling
-        gui
-      ];
-    };
-    users.users."${username}" = {
-      name = username;
-      home = "/Users/${username}";
+    # System Definition
+    system = {
+      stateVersion = 5;
+      primaryUser = "brandon";
     };
   };
 

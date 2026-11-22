@@ -6,7 +6,7 @@
       # Hardware Configuration
       ./_hardware-configuration.nix
 
-      # Flake Input modules
+      # Flake Input Modules
       inputs.home-manager.nixosModules.home-manager
       inputs.nixos-rocksmith.nixosModules.default
       inputs.steam-config-nix.nixosModules.default
@@ -14,15 +14,18 @@
       # Users
       self.modules.nixos."users/brandon"
 
-      # User modules
+      # User Modules
       tesseract-core
       lumix-tether
       gaming
     ];
   };
 
-  flake.modules.nixos.tesseract-core = { config, ... }: {
-    imports = with self.modules.nixos; [ core ];
+  flake.modules.nixos.tesseract-core = {
+    imports = with self.modules.nixos; [
+      core
+      nvidia
+    ];
 
     # System Version
     system.stateVersion = "26.05";
@@ -31,9 +34,6 @@
     home-manager.users.brandon = {
       imports = with self.modules.homeManager; [
         tesseract-core
-        programming
-        terminal
-        tooling
         gui
       ];
     };
@@ -44,20 +44,6 @@
 
     # Networking
     networking.hostName = "tesseract";
-
-    # Graphics Drivers
-    hardware.graphics = {
-      enable = true;
-    };
-    services.xserver.videoDrivers = [ "nvidia" ];
-    hardware.nvidia = {
-      modesetting.enable = true;
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
-      open = false;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
 
     # Greeter
     services.displayManager.noctalia-greeter = {
@@ -70,12 +56,8 @@
   };
 
   flake.modules.homeManager.tesseract-core = {
-    # Home State Version
-    home.stateVersion = "26.05";
-
     # Dotfiles
     home.file.".config/kanshi/config".source = ./dotfiles/kanshi.config;
     home.file.".config/sway/config.d/tesseract".source = ./dotfiles/sway.config;
-    home.file.".config/yazi/keymap.toml".source = ../../home/dotfiles/yazi/keymap.toml;
   };
 }

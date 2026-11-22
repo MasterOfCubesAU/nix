@@ -2,6 +2,7 @@
 {
   perSystem =
     {
+      self',
       pkgs,
       lib,
       system,
@@ -36,7 +37,7 @@
             with pkgs;
             [
               # General
-              yazi
+              self'.packages.yazi
               ripgrep
               # Python
               basedpyright

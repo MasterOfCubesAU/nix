@@ -1,23 +1,39 @@
 { self, ... }:
 {
   flake.modules.generic.core = { pkgs, ... }: {
+    # Nix Settings
     nixpkgs.config = {
       microsoftVisualStudioLicenseAccepted = true;
       allowUnfree = true;
     };
+
+    # Home Manager Global Pkgs
     home-manager.useGlobalPkgs = true;
+
+    # Nix Experimental Features
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"
     ];
+    # Fonts
     fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
   };
+
   flake.modules.darwin.core = {
-    imports = with self.modules.darwin; [
+    imports = [
       self.modules.generic.core
-      darwin-system
     ];
+
+    # Homebrew
+    homebrew = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    # Use TouchID for sudo
+    security.pam.services.sudo_local.touchIdAuth = true;
   };
+
   flake.modules.nixos.core = {
     imports = with self.modules.nixos; [
       self.modules.generic.core
@@ -25,6 +41,7 @@
       display
     ];
 
+    # Virtualisation
     virtualisation.vmVariant = {
       virtualisation = {
         memorySize = 4096;
@@ -32,12 +49,13 @@
       };
     };
 
+    # Networking
     networking.networkmanager.enable = true;
 
+    # Time Zone
     time.timeZone = "Australia/Sydney";
 
     i18n.defaultLocale = "en_AU.UTF-8";
-
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "en_AU.UTF-8";
       LC_IDENTIFICATION = "en_AU.UTF-8";
@@ -49,6 +67,8 @@
       LC_TELEPHONE = "en_AU.UTF-8";
       LC_TIME = "en_AU.UTF-8";
     };
+
+    # Keyboard Mapping
     services.keyd = {
       enable = true;
       keyboards.default = {
@@ -56,9 +76,16 @@
         settings.main.capslock = "esc";
       };
     };
+
+    # Printing
     services.printing.enable = true;
+
+    # Tailscale
     services.tailscale.enable = true;
+    # Bluetooth
     hardware.bluetooth.enable = true;
+
+    # Power Management
     services.upower.enable = true;
     services.power-profiles-daemon.enable = true;
   };

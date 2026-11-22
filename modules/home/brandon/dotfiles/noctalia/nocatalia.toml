@@ -234,7 +234,7 @@ refresh_minutes = 15
 
 [control_center]
 circular_avatar = true
-hidden_tabs = [ "media", "audio", "monitor", "network", "weather", "screen-time" ]
+hidden_tabs = [ "media", "monitor", "network", "weather", "screen-time" ]
 show_avatar_border = true
 show_session_button = true
 show_shortcut_labels = true

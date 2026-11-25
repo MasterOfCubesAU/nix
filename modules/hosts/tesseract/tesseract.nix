@@ -21,7 +21,7 @@
     ];
   };
 
-  flake.modules.nixos.tesseract-core = {
+  flake.modules.nixos.tesseract-core = { pkgs, ... }: {
     imports = with self.modules.nixos; [
       core
       nvidia
@@ -53,6 +53,11 @@
         };
       };
     };
+
+    # Ableton
+    environment.systemPackages = with pkgs; [
+      inputs.ableton-linux.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
   };
 
   flake.modules.homeManager.tesseract-core = {

@@ -85,7 +85,6 @@ order = [ "Primary" ]
         enabled = false
         end = [ "tray", "volume", "network", "group:g1" ]
         font_scale = 1.0
-        font_weight = 500
         hover_highlight = true
         layer = "top"
         margin_edge = 0
@@ -142,7 +141,6 @@ order = [ "Primary" ]
         enabled = false
         end = [ "group:g1" ]
         font_scale = 1.0
-        font_weight = 500
         hover_highlight = true
         layer = "top"
         margin_edge = 0
@@ -233,7 +231,6 @@ refresh_minutes = 15
     use_event_reminders = true
 
 [control_center]
-circular_avatar = true
 hidden_tabs = [ "media", "monitor", "network", "weather", "screen-time" ]
 show_avatar_border = true
 show_session_button = true
@@ -634,7 +631,7 @@ enabled = []
     name = "community"
 
 [shell]
-app_icon_colorize = false
+circular_avatar = true
 avatar_path = ""
 button_borders = true
 card_borders = true

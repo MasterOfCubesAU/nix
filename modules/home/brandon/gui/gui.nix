@@ -21,6 +21,9 @@
           vscode
           bitwarden-desktop
         ]
-        ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [ crosspipe ];
+        ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+          crosspipe
+          davinci-resolve
+        ];
     };
 }

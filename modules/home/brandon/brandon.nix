@@ -89,7 +89,7 @@
       };
       templates = {
         "smb/brandon".content = ''
-          brandon=brandon
+          username=brandon
           password=${config.sops.placeholder."smb/brandon"}
         '';
       };

@@ -77,8 +77,21 @@
     services.openssh.enable = true;
   };
 
-  flake.modules.homeManager.deck-core = {
+  flake.modules.homeManager.deck-core = { pkgs, lib, ... }: {
     # Home State Version
     home.stateVersion = "26.05";
+
+    # Steam Apps
+    programs.steam.config = {
+      enable = true;
+      nonSteamApps = {
+        "Vesktop" = {
+          target = "${lib.getExe pkgs.vesktop}";
+        };
+        "YouTube" = {
+          target = "${lib.getExe pkgs.firefox}/bin/firefox --kiosk https://youtube.com";
+        };
+      };
+    };
   };
 }
